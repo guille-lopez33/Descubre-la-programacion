@@ -1,0 +1,14 @@
+void main(){
+  ellipse (160,160, 150, 150) ;}
+
+void PosRaton (){
+  println ("x: " + mouseX);
+  println ("Y: " + mouseY) ;}
+void dibuja(){ 
+background (0,0,0) ;
+  if (mousePressed || mouseButton == RIGHTBUTTON)
+      ellipse (mouseX, mouseY, 50,50);
+  text ("Nigga", 100 ,100);
+  
+
+}
