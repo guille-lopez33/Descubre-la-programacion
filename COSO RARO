@@ -1,14 +1,17 @@
-void main(){
-  ellipse (160,160, 150, 150) ;}
+void main (){
+  imagen();
+  animate();
+  circulo();
+}
 
-void PosRaton (){
-  println ("x: " + mouseX);
-  println ("Y: " + mouseY) ;}
-void dibuja(){ 
-background (0,0,0) ;
-  if (mousePressed || mouseButton == RIGHTBUTTON)
-      ellipse (mouseX, mouseY, 50,50);
-  text ("Nigga", 100 ,100);
+void imagen (){
+  background(22,165,19);
+}
+void animate (){
+  rect(120,120,80,80);
+}
+void circulo (){
+  if (mousePRESSED
+  ellipse (mouseX, mouseY, 30,30);
   
-
 }
