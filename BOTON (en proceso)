@@ -1,0 +1,23 @@
+void main () { 
+  animate (ejecutar); 
+} 
+void ejecutar () { 
+  control (); 
+  imagen (); 
+} 
+void imagen ()
+{ 
+  rect (120,120,80,80) ; 
+} 
+void control () { 
+  background(19,76,8); 
+  println ("X: " + mouseX); 
+  println ("Y: " + mouseY); 
+  if (mousePressed) 
+    if (mouseButton == MIDDLEBUTTON) 
+    if (mouseX >120 && mouseX < 200 || mouseY > 120 && mouseY< 200) 
+    background(38,5,5);
+    image ("https://preview.redd.it/my-new-character-v0-611ft1d6wfnd1.jpeg?width=640&crop=smart&auto=webp&s=32da9d386cdc3c8a2703bd93b57dc598d709fba6", 120,120, 80, 80);
+    ellipse(mouseX,mouseY, 10,10);
+     
+}
