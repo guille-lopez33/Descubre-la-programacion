@@ -6,7 +6,11 @@ void ejecutar () {
   imagen ();
 } 
 void imagen (){ 
+  fill(22,123,223) ;
   rect (120,120,80,80) ;
+  fill(153,60,60);
+  text ("Pulsa", 135, 165);
+  
   if (mousePressed)
     if (mouseButton == LEFTBUTTON && mouseX > 120 && mouseX < 190 && mouseY <197 && mouseY >127);
     if (mouseX > 120 && mouseX < 190 && mouseY <197 && mouseY >127) 
