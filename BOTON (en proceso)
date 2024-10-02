@@ -6,17 +6,19 @@ void ejecutar () {
   imagen ();
 } 
 void imagen (){ 
-  rect (120,120,80,80) ; 
+  rect (120,120,80,80) ;
+  if (mousePressed)
+    if (mouseButton == LEFTBUTTON && mouseX > 120 && mouseX < 190 && mouseY <197 && mouseY >127);
+    if (mouseX > 120 && mouseX < 190 && mouseY <197 && mouseY >127) 
+   image ("https://preview.redd.it/my-new-character-v0-611ft1d6wfnd1.jpeg?width=640&crop=smart&auto=webp&s=32da9d386cdc3c8a2703bd93b57dc598d709fba6", 0,0, 320, 320);
 } 
 void control () { 
   background(19,76,8); 
   println ("X: " + mouseX); 
   println ("Y: " + mouseY); 
   if (mousePressed) 
-    if (mouseButton == MIDDLEBUTTON) 
-    if (mouseX >120 && mouseX < 200 || mouseY > 120 && mouseY< 200) 
+    if (mouseButton == MIDDLEBUTTON);
+    if (mouseX > 120 && mouseX < 190 && mouseY <197 && mouseY >127) 
     background(38,5,5);
-    if (mouseButton == LEFTBUTTON)
-    image ("https://preview.redd.it/my-new-character-v0-611ft1d6wfnd1.jpeg?width=640&crop=smart&auto=webp&s=32da9d386cdc3c8a2703bd93b57dc598d709fba6", 0,0, 320, 320);
     ellipse(mouseX,mouseY, 10,10);
 }
