@@ -1,0 +1,32 @@
+int x = 160;
+int y = 160;
+
+void main() { 
+  animate(ejecutar);
+}
+
+void ejecutar() {
+  player();
+  teclas(); 
+}
+
+void player() { 
+  background(52, 4, 4);
+  fill(116, 110, 4);
+  rect(x, y, 10, 20);
+}
+
+void teclas() {
+  if (keyPressed && key == "up" && y > 0) {
+    y = y - 4;
+  }
+  if (keyPressed && key == "down" && y < 320 - 20) { 
+    y = y + 4;
+  }
+  if (keyPressed && key == "left" && x > 0) {
+    x = x - 4;
+  }
+  if (keyPressed && key == "right" && x < 320 - 10) { 
+    x = x + 4;
+  }
+}
