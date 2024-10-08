@@ -1,0 +1,12 @@
+void dibuja() {
+ rect(160,150, 10,20);
+}
+
+void animate (){
+  if (keyPressed) left;
+  
+  
+}
+void main(){
+  dibuja ();
+}
