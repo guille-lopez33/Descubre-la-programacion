@@ -1,12 +1,21 @@
-void dibuja() {
- rect(160,150, 10,20);
+int x=150;
+int y=160;
+  
+void dibuja(){
+  rect(x,y,10,20);
+  
 }
 
-void animate (){
-  if (keyPressed) left;
-  
-  
+void animate(){
+  if (keyPressed && key == "up"){
+    y=-5+y;
+  }
+  if (keyPressed && key == "down"){
+    x=5-x;
+  }
 }
+
 void main(){
-  dibuja ();
+dibuja();
+animate();
 }
