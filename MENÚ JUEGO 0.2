@@ -1,0 +1,41 @@
+ void main(){
+  animate (menu);
+  }
+  void menu (){
+  image("https://github.com/guille-lopez33/Descubre-la-programacion/blob/main/hakari.png?raw=true", 0,0,320,320);  jugar();
+  opciones();
+  creditos();
+  }
+  void jugar(){
+  fill(237,218,161);
+  rect (80,80,160,40); 
+  fill(70,120,119);
+  text ("Jugar", 133,108); 
+  if ( mouseX>=80 && mouseX<=240 && mouseY<=120 && mouseY>=80)
+  rect (80,80,160,40); 
+  fill(78,161,34);
+  text ("Jugar", 133,108);  
+  }
+  
+  void controles(){
+  fill(237,218,161);
+  rect (80, 140, 160,40);
+  fill(70,120,119);
+  text ("Controles", 120,167);
+  if ( mouseX>=80 && mouseX<=240 && mouseY<=210 && mouseY>=140)
+  rect (80,140,160,40); 
+  fill(77,163,31);
+  text ("Controles", 120,167);
+  }
+
+  void creditos(){
+  fill(237,218,161);
+  rect (80, 200, 160,40);
+  fill(70,120,119);
+  text ("Créditos", 127,225);
+  if ( mouseX>=80 && mouseX<=240 && mouseY<=240 && mouseY>=200)
+  rect (80,200,160,40); 
+  fill(77,163,31);
+  text ("Créditos", 127,225);  
+  }
+ 
