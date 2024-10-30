@@ -58,3 +58,13 @@ void main(){
     text ("D para derecha", 80,180);
     }
   }
+
+  void salir(){
+    fill(151,54,54);
+    rect (30,30 ,20,20);
+    fill(170,235,34);
+    text ("<", 20,20);
+    if (mousePressed){
+    if (mouseButton == LEFTBUTTON && mouseX>= 20 && mouseX<=40 && mouseY<=40 && mouseY>= 20)
+    animate(menu);}
+  }
