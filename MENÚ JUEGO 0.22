@@ -48,5 +48,5 @@
     if (mouseX>=80 && mouseX<=240 && mouseY<=210 && mouseY>=140);
     background(203,24,24);
     if (mousePressed)
-     text ("W para arriba gay", 80,30);
+     text ("W para arriba", 80,30);
   }
