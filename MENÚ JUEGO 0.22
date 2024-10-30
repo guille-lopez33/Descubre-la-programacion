@@ -59,12 +59,21 @@ void main(){
     }
   }
 
-  void salir(){
+  void botonsalir(){
     fill(151,54,54);
     rect (30,30 ,20,20);
     fill(170,235,34);
     text ("<", 20,20);
-    if (mousePressed){
-    if (mouseButton == LEFTBUTTON && mouseX>= 20 && mouseX<=40 && mouseY<=40 && mouseY>= 20)
-    animate(menu);}
   }
+    void funcionsalir(){
+    if (mousePressed){
+      if (mouseButton == LEFTBUTTON){
+        if (mouseX <=20){
+        if (mouseX >=20){
+        if (mouseY <=20){
+        if (mouseY >=20){
+          animate(menu);
+        }
+        }}}}}}
+        
+         
