@@ -1,4 +1,4 @@
-  void main(){
+void main(){
   animate (menu);
   }
   void menu (){
@@ -12,41 +12,49 @@
   rect (80,80,160,40); 
   fill(70,120,119);
   text ("Jugar", 133,108); 
-  if ( mouseX>=80 && mouseX<=240 && mouseY<=120 && mouseY>=80)
+  if ( mouseX>=80 && mouseX<=240 && mouseY<=120 && mouseY>=80){
   rect (80,80,160,40); 
   fill(78,161,34);
   text ("Jugar", 133,108);  
   }
+ }
   
   void controles(){
   fill(237,218,161);
   rect (80, 140, 160,40);
   fill(70,120,119);
   text ("Controles", 120,167);
-  if ( mouseX>=80 && mouseX<=240 && mouseY<=210 && mouseY>=140)
+  if ( mouseX>=80 && mouseX<=240 && mouseY<=210 && mouseY>=140){
   rect (80,140,160,40); 
   fill(77,163,31);
   text ("Controles", 120,167);
-  if (mousePressed)
+  }
+  if (mousePressed){
+  if (mouseButton == LEFTBUTTON && mouseX>=80 && mouseX<=240 && mouseY<=210 && mouseY>=140);
+  if (mouseX>=80 && mouseX<=240 && mouseY<=210 && mouseY>=140);
   animate(teclas);
   }
-
+ }
   void creditos(){
   fill(237,218,161);
   rect (80, 200, 160,40);
   fill(70,120,119);
   text ("Créditos", 127,225);
-  if ( mouseX>=80 && mouseX<=240 && mouseY<=240 && mouseY>=200)
+  if ( mouseX>=80 && mouseX<=240 && mouseY<=240 && mouseY>=200){
   rect (80,200,160,40); 
   fill(77,163,31);
   text ("Créditos", 127,225);
   }
- 
+ }
   void teclas(){
-    if (mousePressed)
+    if (mousePressed){
     if (mouseButton == LEFTBUTTON && mouseX>=80 && mouseX<=240 && mouseY<=210 && mouseY>=140);
     if (mouseX>=80 && mouseX<=240 && mouseY<=210 && mouseY>=140);
     background(203,24,24);
-    if (mousePressed)
-     text ("W para arriba", 80,30);
+    fill(180,205,21);
+    text ("W para arriba", 80,90); 
+    text ("A para izquierda", 80,120);
+    text ("S para abajo", 80,150);
+    text ("D para derecha", 80,180);
+    }
   }
