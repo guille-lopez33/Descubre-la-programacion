@@ -1,0 +1,114 @@
+int ballX = 160;
+int ballY = 120;
+int ballSpeedX = 4;
+int ballSpeedY = 4;
+
+int paddleWidth = 10;
+int paddleHeight = 50;
+
+int paddleLeftX = 20;
+int paddleLeftY = 120;
+
+int paddleRightX = 290;
+int paddleRightY = 120;
+
+int scoreLeft = 0;
+int scoreRight = 0;
+
+void main() {
+    animate(jugar);
+}
+
+void jugar() {
+    fondo();
+    moverPelota();
+    mostrarPelota();
+    mostrarPalas();
+    moverPalas();
+    mostrarPuntaje();
+}
+
+void fondo() {
+    background(0, 0, 0);
+}
+
+void mostrarPelota() {
+    fill(255, 255, 255);
+    image("https://github.com/guille-lopez33/Descubre-la-programacion/blob/main/pixil-frame-0.png?raw=true", ballX, ballY, 50, 50);
+}
+
+void moverPelota() {
+    ballX += ballSpeedX;
+    ballY += ballSpeedY;
+
+    if (ballY < 0 || ballY > 240) {
+        ballSpeedY = -ballSpeedY;
+    }
+
+    if (ballX < paddleLeftX + paddleWidth && ballY > paddleLeftY && ballY < paddleLeftY + paddleHeight) {
+        ballSpeedX = -ballSpeedX;
+    }
+
+    if (ballX > paddleRightX - paddleWidth && ballY > paddleRightY && ballY < paddleRightY + paddleHeight) {
+        ballSpeedX = -ballSpeedX;
+    }
+
+    if (ballX < 0) {
+        scoreRight++;
+        reiniciarPelota();
+    }
+    if (ballX > 320) {
+        scoreLeft++;
+        reiniciarPelota();
+    }
+}
+
+void mostrarPalas() {
+    fill(255, 255, 255);
+    rect(paddleLeftX, paddleLeftY, paddleWidth, paddleHeight);
+
+    rect(paddleRightX, paddleRightY, paddleWidth, paddleHeight);
+}
+
+void moverPalas() {
+  
+    if (keyPressed && key == "w") {
+        paddleLeftY -= 4;
+    }
+    if (keyPressed && key == "s") {
+        paddleLeftY += 4;
+    }
+
+    if (keyPressed && key == "i") {
+        paddleRightY -= 4;
+    }
+    if (keyPressed && key == "k") {
+        paddleRightY += 4;
+    }
+
+    if (paddleLeftY < 0) {
+        paddleLeftY = 0;
+    }
+    if (paddleLeftY > 240 - paddleHeight) {
+        paddleLeftY = 240 - paddleHeight;
+    }
+    if (paddleRightY < 0) {
+        paddleRightY = 0;
+    }
+    if (paddleRightY > 240 - paddleHeight) {
+        paddleRightY = 240 - paddleHeight;
+    }
+}
+
+void mostrarPuntaje() {
+    fill(255, 255, 255);
+    text("Jugador 1: " + scoreLeft, 10, 20);
+    text("Jugador 2: " + scoreRight, 210, 20);
+}
+
+void reiniciarPelota() {
+    ballX = 160;
+    ballY = 160;
+    ballSpeedX = (4) * (random(0, 1) < 0.5 ? 1 : -1);
+    ballSpeedY = (4) * (random(0, 1) < 0.5 ? 1 : -1);
+}
