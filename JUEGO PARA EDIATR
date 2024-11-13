@@ -86,17 +86,17 @@ void moverPalas() {
         paddleRightY += 4;
     }
 
-    if (paddleLeftY < 0) {
-        paddleLeftY = 0;
+    if (paddleLeftY < 20) {
+        paddleLeftY = 20;
     }
-    if (paddleLeftY > 240 - paddleHeight) {
-        paddleLeftY = 240 - paddleHeight;
+    if (paddleLeftY > 320 - paddleHeight) {
+        paddleLeftY = 320 - paddleHeight;
     }
-    if (paddleRightY < 0) {
-        paddleRightY = 0;
+    if (paddleRightY < 20) {
+        paddleRightY = 20;
     }
-    if (paddleRightY > 240 - paddleHeight) {
-        paddleRightY = 240 - paddleHeight;
+    if (paddleRightY > 320 - paddleHeight) {
+        paddleRightY = 320 - paddleHeight;
     }
 }
 
