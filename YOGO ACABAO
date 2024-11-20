@@ -1,0 +1,119 @@
+int ballX = 160;
+int ballY = 120;
+int ballSpeedX = 2;
+int ballSpeedY = 2;
+
+int paddleWidth = 10;
+int paddleHeight = 50;
+
+int paddleLeftX = 20;
+int paddleLeftY = 120;
+
+int paddleRightX = 290;
+int paddleRightY = 120;
+
+int scoreLeft = 0;
+int scoreRight = 0;
+
+void main() {
+    animate(jugar);
+}
+
+void jugar() {
+    fondo();
+    moverPelota();
+    mostrarPelota();
+    mostrarPalas();
+    moverPalas();
+    mostrarPuntaje();
+}
+
+void fondo() {
+    background(0, 0, 0);
+}
+
+void mostrarPelota() {
+    fill(255, 255, 255);
+    image("https://github.com/guille-lopez33/Descubre-la-programacion/blob/main/pixil-frame-0.png?raw=true", ballX, ballY, 50, 50);
+}
+
+void moverPelota() {
+    ballX += ballSpeedX;
+    ballY += ballSpeedY;
+
+    // Colisión con las paredes superior e inferior
+    if (ballY < 20 || ballY > 280) {
+        ballSpeedY = -ballSpeedY;
+    }
+
+    // Colisión con la pala izquierda
+    if (ballX < paddleLeftX + paddleWidth && ballY > paddleLeftY && ballY < paddleLeftY + paddleHeight) {
+        ballSpeedX = -ballSpeedX;
+    }
+
+    // Colisión con la pala derecha
+    // Verificamos si la pelota está dentro del rango horizontal de la pala y dentro del rango vertical
+    if (ballX + 50 > paddleRightX && ballX < paddleRightX + paddleWidth && ballY + 50 > paddleRightY && ballY < paddleRightY + paddleHeight) {
+        ballSpeedX = -ballSpeedX;
+    }
+
+    // Puntos
+    if (ballX < 10) {
+        scoreRight++;
+        reiniciarPelota();
+    }
+    if (ballX > 280) {
+        scoreLeft++;
+        reiniciarPelota();
+    }
+}
+
+
+void mostrarPalas() {
+    fill(255, 255, 255);
+    rect(paddleLeftX, paddleLeftY, paddleWidth, paddleHeight);
+    rect(paddleRightX, paddleRightY, paddleWidth, paddleHeight);
+}
+
+void moverPalas() {
+  
+    if (keyPressed && key == "w") {
+        paddleLeftY -= 4;
+    }
+    if (keyPressed && key == "s") {
+        paddleLeftY += 4;
+    }
+
+    if (keyPressed && key == "up") {
+        paddleRightY -= 4;
+    }
+    if (keyPressed && key == "down") {
+        paddleRightY += 4;
+    }
+
+    if (paddleLeftY < 20) {
+        paddleLeftY = 20;
+    }
+    if (paddleLeftY > 320 - paddleHeight) {
+        paddleLeftY = 320 - paddleHeight;
+    }
+    if (paddleRightY < 20) {
+        paddleRightY = 20;
+    }
+    if (paddleRightY > 320 - paddleHeight) {
+        paddleRightY = 320 - paddleHeight;
+    }
+}
+
+void mostrarPuntaje() {
+    fill(255, 255, 255);
+    text("Jugador 1: " + scoreLeft, 10, 20);
+    text("Jugador 2: " + scoreRight, 210, 20);
+}
+
+void reiniciarPelota() {
+    ballX = 160;
+    ballY = 160;
+    ballSpeedX = (4) * (random(0, 1) < 0.5 ? 1 : -2);
+    ballSpeedY = (4) * (random(0, 1) < 0.5 ? 1 : -2);
+}
