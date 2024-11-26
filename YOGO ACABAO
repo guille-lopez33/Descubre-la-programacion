@@ -90,23 +90,21 @@ void mostrarPalas() {
 }
 
 void moverPalas() {
-    // Movimientos de la pala izquierda
-    if if (keyPressed && key == "w") {
+    if (keyPressed && key == "w") {
         paddleLeftY -= 4;
     }
-    if (keyIsDown(83)) {  // 'S' para mover hacia abajo
+    if (keyPressed && key == "s") {
         paddleLeftY += 4;
     }
 
-    // Movimientos de la pala derecha
-    if (keyIsDown(38)) {  // Flecha arriba para mover hacia arriba
+    if (keyPressed && key == "up") {
         paddleRightY -= 4;
     }
-    if (keyIsDown(40)) {  // Flecha abajo para mover hacia abajo
+    if (keyPressed && key == "down") { 
         paddleRightY += 4;
-    }
+    }}
 
-    // Limitar el movimiento de las palas dentro del área de juego
+
     if (paddleLeftY < 20) {
         paddleLeftY = 20;
     }
@@ -119,7 +117,6 @@ void moverPalas() {
     if (paddleRightY > 320 - paddleHeight) {
         paddleRightY = 320 - paddleHeight;
     }
-}
 
 void mostrarPuntaje() {
     fill(255, 255, 255);
