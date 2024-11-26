@@ -15,11 +15,18 @@ int paddleRightY = 120;
 int scoreLeft = 0;
 int scoreRight = 0;
 
+boolean gameOver = false;  
+
 void main() {
     animate(jugar);
 }
 
 void jugar() {
+    if (gameOver) {
+        mostrarMensajeFinal();
+        return;  
+    }
+
     fondo();
     moverPelota();
     mostrarPelota();
@@ -41,23 +48,19 @@ void moverPelota() {
     ballX += ballSpeedX;
     ballY += ballSpeedY;
 
-    // Colisión con las paredes superior e inferior
+    
     if (ballY < 20 || ballY > 280) {
         ballSpeedY = -ballSpeedY;
     }
 
-    // Colisión con la pala izquierda
     if (ballX < paddleLeftX + paddleWidth && ballY > paddleLeftY && ballY < paddleLeftY + paddleHeight) {
         ballSpeedX = -ballSpeedX;
     }
 
-    // Colisión con la pala derecha
-    // Verificamos si la pelota está dentro del rango horizontal de la pala y dentro del rango vertical
     if (ballX + 50 > paddleRightX && ballX < paddleRightX + paddleWidth && ballY + 50 > paddleRightY && ballY < paddleRightY + paddleHeight) {
         ballSpeedX = -ballSpeedX;
     }
 
-    // Puntos
     if (ballX < 10) {
         scoreRight++;
         reiniciarPelota();
@@ -66,8 +69,16 @@ void moverPelota() {
         scoreLeft++;
         reiniciarPelota();
     }
-}
 
+   
+    if (scoreLeft >= 5) {
+        gameOver = true;
+        mostrarMensajeFinal(); 
+    } else if (scoreRight >= 5) {
+        gameOver = true;
+        mostrarMensajeFinal();
+    }
+}
 
 void mostrarPalas() {
     fill(255, 255, 255);
@@ -76,7 +87,6 @@ void mostrarPalas() {
 }
 
 void moverPalas() {
-  
     if (keyPressed && key == "w") {
         paddleLeftY -= 4;
     }
@@ -116,4 +126,24 @@ void reiniciarPelota() {
     ballY = 160;
     ballSpeedX = (4) * (random(0, 1) < 0.5 ? 1 : -2);
     ballSpeedY = (4) * (random(0, 1) < 0.5 ? 1 : -2);
+}
+
+void mostrarMensajeFinal() {
+    fill(255, 255, 255);
+    textSize(15);
+    if (scoreLeft >= 5) {
+        text("¡Jugador 1 gana!", 80, 150);
+    } else if (scoreRight >= 5) {
+        text("¡Jugador 2 gana!", 90, 120);
+    }
+    textSize(10);
+    text("Presiona cualquier tecla para reiniciar", 50, 200);
+}
+
+void gameover() {
+    if (gameOver) {
+        scoreLeft = 0;
+        scoreRight = 0;
+        gameOver = false;
+    }
 }
