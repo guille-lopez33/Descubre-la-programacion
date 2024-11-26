@@ -15,7 +15,7 @@ int paddleRightY = 120;
 int scoreLeft = 0;
 int scoreRight = 0;
 
-boolean gameOver = false;  
+boolean gameOver = false;  // Variable para controlar si el juego ha terminado
 
 void main() {
     animate(jugar);
@@ -24,7 +24,7 @@ void main() {
 void jugar() {
     if (gameOver) {
         mostrarMensajeFinal();
-        return;  
+        return;  // Si el juego terminó, no se sigue ejecutando el resto de la función
     }
 
     fondo();
@@ -48,19 +48,22 @@ void moverPelota() {
     ballX += ballSpeedX;
     ballY += ballSpeedY;
 
-    
+    // Colisión con las paredes superior e inferior
     if (ballY < 20 || ballY > 280) {
         ballSpeedY = -ballSpeedY;
     }
 
+    // Colisión con la pala izquierda
     if (ballX < paddleLeftX + paddleWidth && ballY > paddleLeftY && ballY < paddleLeftY + paddleHeight) {
         ballSpeedX = -ballSpeedX;
     }
 
+    // Colisión con la pala derecha
     if (ballX + 50 > paddleRightX && ballX < paddleRightX + paddleWidth && ballY + 50 > paddleRightY && ballY < paddleRightY + paddleHeight) {
         ballSpeedX = -ballSpeedX;
     }
 
+    // Puntos
     if (ballX < 10) {
         scoreRight++;
         reiniciarPelota();
@@ -70,13 +73,13 @@ void moverPelota() {
         reiniciarPelota();
     }
 
-   
+    // Verificar si algún jugador ha llegado a 5 puntos
     if (scoreLeft >= 5) {
         gameOver = true;
-        mostrarMensajeFinal(); 
+        mostrarMensajeFinal();  // Mostrar mensaje de victoria
     } else if (scoreRight >= 5) {
         gameOver = true;
-        mostrarMensajeFinal();
+        mostrarMensajeFinal();  // Mostrar mensaje de victoria
     }
 }
 
@@ -87,20 +90,23 @@ void mostrarPalas() {
 }
 
 void moverPalas() {
-    if (keyPressed && key == "w") {
+    // Movimientos de la pala izquierda
+    if if (keyPressed && key == "w") {
         paddleLeftY -= 4;
     }
-    if (keyPressed && key == "s") {
+    if (keyIsDown(83)) {  // 'S' para mover hacia abajo
         paddleLeftY += 4;
     }
 
-    if (keyPressed && key == "up") {
+    // Movimientos de la pala derecha
+    if (keyIsDown(38)) {  // Flecha arriba para mover hacia arriba
         paddleRightY -= 4;
     }
-    if (keyPressed && key == "down") {
+    if (keyIsDown(40)) {  // Flecha abajo para mover hacia abajo
         paddleRightY += 4;
     }
 
+    // Limitar el movimiento de las palas dentro del área de juego
     if (paddleLeftY < 20) {
         paddleLeftY = 20;
     }
@@ -130,17 +136,18 @@ void reiniciarPelota() {
 
 void mostrarMensajeFinal() {
     fill(255, 255, 255);
-    textSize(15);
+    textSize(32);
     if (scoreLeft >= 5) {
-        text("¡Jugador 1 gana!", 80, 150);
+        text("¡Jugador 1 gana!", 90, 150);
     } else if (scoreRight >= 5) {
-        text("¡Jugador 2 gana!", 90, 120);
+        text("¡Jugador 2 gana!", 90, 150);
     }
-    textSize(10);
-    text("Presiona cualquier tecla para reiniciar", 50, 200);
+    textSize(16);
+    text("Presiona cualquier tecla para reiniciar", 80, 200);
 }
 
-void gameover() {
+void juegoperdio() {
+    // Si se presiona cualquier tecla después de que el juego termine, reiniciamos
     if (gameOver) {
         scoreLeft = 0;
         scoreRight = 0;
