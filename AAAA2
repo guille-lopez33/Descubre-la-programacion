@@ -1,0 +1,250 @@
+int x = 0;
+int y = 0;
+
+int ballX = 160;
+int ballY = 120;
+int ballSpeedX = 6;
+int ballSpeedY = 6;
+
+int paddleWidth = 10;
+int paddleHeight = 50;
+
+int paddleLeftX = 20;
+int paddleLeftY = 120;
+
+int paddleRightX = 290;
+int paddleRightY = 120;
+
+int scoreLeft = 0;
+int scoreRight = 0;
+
+boolean gameOver = false;  
+boolean enJuego = false;  
+
+void main() {
+    animate(ejecutar);
+}
+
+void ejecutar() {
+    if (enJuego) {
+        menu();
+        jugar();
+        controles();
+        creditos();
+        clicks();
+        coordenadas();
+    } else {
+        juego();
+    }
+}
+
+void menu() {
+    image("https://github.com/guille-lopez33/Descubre-la-programacion/blob/main/hakari.png?raw=true", 0, 0, 320, 320);
+}
+
+void jugar() {
+    fill(237, 218, 161);
+    rect(80, 80, 160, 40);
+    fill(70, 120, 119);
+    text("Jugar", 133, 108);
+    if (mouseX >= 80 && mouseX <= 240 && mouseY <= 120 && mouseY >= 80) {
+        rect(80, 80, 160, 40);
+        fill(78, 161, 34);
+        text("Jugar", 133, 108);
+        if (mousePressed && mouseButton == LEFTBUTTON) {
+            enJuego = true;
+        }
+    }
+}
+
+void controles() {
+    fill(237, 218, 161);
+    rect(80, 140, 160, 40);
+    fill(70, 120, 119);
+    text("Controles", 120, 167);
+    if (mouseX >= 80 && mouseX <= 240 && mouseY <= 210 && mouseY >= 140) {
+        rect(80, 140, 160, 40);
+        fill(77, 163, 31);
+        text("Controles", 120, 167);
+        if (mousePressed && mouseButton == LEFTBUTTON) {
+            animate(controles2);
+        }
+    }
+}
+
+void creditos() {
+    fill(237, 218, 161);
+    rect(80, 200, 160, 40);
+    fill(70, 120, 119);
+    text("Créditos", 127, 225);
+    if (mouseX >= 80 && mouseX <= 240 && mouseY <= 240 && mouseY >= 200) {
+        rect(80, 200, 160, 40);
+        fill(77, 163, 31);
+        text("Créditos", 127, 225);
+        if (mousePressed && mouseButton == LEFTBUTTON) {
+            animate(creditos2);
+        }
+    }
+}
+
+void clicks() {
+    if (mousePressed && mouseX > 10 && mouseX < 50 && mouseY > 10 && mouseY < 50 && mouseButton == LEFTBUTTON) {
+        animate(ejecutar);
+    }
+}
+
+void creditos2() {
+    image("https://th.bing.com/th/id/OIP.tOZcL3A6vDNHtG593H8L2wHaEK?rs=1&pid=ImgDetMain", 0, 0, 320, 320);
+    text("Creado por Guillermo López Jara", 25,140);
+    fill(0, 0, 0);
+    salir();
+}
+
+void controles2() {
+    background(203, 24, 24);
+    fill(180, 205, 21);
+    text("W para arriba J1", 80, 90);
+    text("A para abajo J1", 80, 120);
+    text("↑ para arriba J2", 80, 150);
+    text("↓ para abajo J2", 80, 180);
+    salir();
+}
+
+void coordenadas() {
+    println("X: " + mouseX);
+    println("Y: " + mouseY);
+}
+
+void salir() {
+    image("https://www.inmopc.com/INMOWEB-PHP/images/botones/SALIR.png", 10, 10, 50, 50);
+    if (mouseX > 5 && mouseX < 40 && mouseY > 5 && mouseY < 40) {
+        image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOhLxPSxBSdcE5pBP4nb7kpAfENe5d03MRpLAo0GGucqpvob0shKe9_oQLdqvcx-lA590&usqp=CAU", 10, 10, 50, 50);
+        if (mousePressed && mouseButton == LEFTBUTTON) {
+            animate(ejecutar);
+        }
+    }
+}
+
+void juego() {
+    if (gameOver) {
+        mostrarMensajeFinal();
+        return;
+    }
+
+    fondo();
+    moverPelota();
+    mostrarPelota();
+    mostrarPalas();
+    moverPalas();
+    mostrarPuntaje();
+}
+
+void fondo() {
+    background(0, 0, 0);
+}
+
+void mostrarPelota() {
+    fill(255, 255, 255);
+    ellipse(ballX, ballY, 20, 20);
+}
+
+void moverPelota() {
+    ballX += ballSpeedX;
+    ballY += ballSpeedY;
+
+    if (ballY < 20 || ballY > 280) {
+        ballSpeedY = -ballSpeedY;
+    }
+
+    if (ballX < paddleLeftX + paddleWidth && ballY > paddleLeftY && ballY < paddleLeftY + paddleHeight) {
+        ballSpeedX = -ballSpeedX;
+    }
+
+    if (ballX + 20 > paddleRightX && ballX < paddleRightX + paddleWidth && ballY + 20 > paddleRightY && ballY < paddleRightY + paddleHeight) {
+        ballSpeedX = -ballSpeedX;
+    }
+
+    if (ballX < 10) {
+        scoreRight++;
+        reiniciarPelota();
+    }
+    if (ballX > 310) {
+        scoreLeft++;
+        reiniciarPelota();
+    }
+
+    if (scoreLeft >= 5 || scoreRight >= 5) {
+        gameOver = true;
+    }
+}
+
+void mostrarPalas() {
+    fill(255, 255, 255);
+    rect(paddleLeftX, paddleLeftY, paddleWidth, paddleHeight);
+    rect(paddleRightX, paddleRightY, paddleWidth, paddleHeight);
+}
+
+void moverPalas() {
+  
+    if (keyPressed && key == "w") {
+        paddleLeftY -= 4;
+    }
+    if (keyPressed && key == "s") {
+        paddleLeftY += 4;
+    }
+
+    if (keyPressed && key == "up") {
+        paddleRightY -= 4;
+    }
+    if (keyPressed && key == "down") {
+        paddleRightY += 4;
+    }
+
+    if (paddleLeftY < 20) {
+        paddleLeftY = 20;
+    }
+    if (paddleLeftY > 320 - paddleHeight) {
+        paddleLeftY = 320 - paddleHeight;
+    }
+    if (paddleRightY < 20) {
+        paddleRightY = 20;
+    }
+    if (paddleRightY > 320 - paddleHeight) {
+        paddleRightY = 320 - paddleHeight;
+    }
+}
+
+void mostrarPuntaje() {
+    fill(255, 255, 255);
+    text("Jugador 1: " + scoreLeft, 10, 20);
+    text("Jugador 2: " + scoreRight, 210, 20);
+}
+
+void reiniciarPelota() {
+    ballX = 160;
+    ballY = 120;
+    ballSpeedX = 6;
+    ballSpeedY = 6;
+}
+
+void mostrarMensajeFinal() {
+    fill(255, 255, 255);
+    textSize(17);
+    if (scoreLeft >= 5) {
+        text("¡Jugador 1 gana!", 90, 150);
+    } else if (scoreRight >= 5) {
+        text("¡Jugador 2 gana!", 90, 150);
+    }
+    textSize(13);
+    text("Presiona ESCAPE para reiniciar", 25, 180);
+    if (keyPressed && key == "Escape") {
+        reiniciarJuego();
+    }
+}
+
+void reiniciarJuego() {
+    scoreLeft = 0;
+    scoreRight = 0;
+    gameOver = false;
+    enJuego = false; 
+}
