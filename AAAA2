@@ -3,8 +3,8 @@ int y = 0;
 
 int ballX = 160;
 int ballY = 120;
-int ballSpeedX = 6;
-int ballSpeedY = 6;
+int ballSpeedX = 3;
+int ballSpeedY = 3;
 
 int paddleWidth = 10;
 int paddleHeight = 50;
@@ -223,8 +223,8 @@ void mostrarPuntaje() {
 void reiniciarPelota() {
     ballX = 160;
     ballY = 120;
-    ballSpeedX = 6;
-    ballSpeedY = 6;
+    ballSpeedX = 3 * (random(1) < 0.5 ? 1 : -3);
+    ballSpeedY = 3 * (random(1) < 0.5 ? 1 : -3);
 }
 
 void mostrarMensajeFinal() {
